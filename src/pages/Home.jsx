@@ -5,8 +5,16 @@ export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 
+	const apiUrlBase = 'https://www.swapi.tech/api/'
 
-	
+	fetch("https://www.swapi.tech/api/planets/1/")
+		.then(res => res.json())
+		.then(data => console.log(data))
+		.catch(err => console.error(err))
+
+
+
+
 
 
 
@@ -22,12 +30,12 @@ export const Home = () => {
 								<h5 className="card-title">Card title</h5>
 								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								<Link to="" >
-									<button	type="button" className="btn btn-primary">Learn more</button>
+									<button type="button" className="btn btn-primary">Learn more</button>
 								</Link>
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
 			<div className="text-start mt-5 container">
 				<h1>Planet</h1>
@@ -39,18 +47,18 @@ export const Home = () => {
 								<h5 className="card-title">Card title</h5>
 								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								<Link to="" >
-									<button	type="button" className="btn btn-primary">Learn more</button>
+									<button type="button" className="btn btn-primary">Learn more</button>
 								</Link>
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 			</div>
 
 
 		</div>
-		
-		
-		
+
+
+
 	);
 }; 
