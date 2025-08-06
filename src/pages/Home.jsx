@@ -13,13 +13,40 @@ export const Home = () => {
 
 	const apiUrlPlanet = 'https://www.swapi.tech/api/planets'
 	const apiUrlPeople = 'https://www.swapi.tech/api/people'
+	const apiUrlVehicle = 'https://www.swapi.tech/api/vehicles'
 
 	async function fetchVehicleDetails(url) {
 		const response = await fetch(url);
 		return await response.json()
 	}
 
-	
+	async function fetchVehicles() {
+		try {
+			const response = await fetch(apiUrlVehicle);
+
+			if(!response.ok){
+				throw new Error(`HTTP Error! status: ${response.status}`)
+			}
+			const data = await response.json()
+
+			const vehiclesWithDetails = await Promise.all(
+				data.results.map( async vehicle => {
+					const details = await fetchVehicleDetails(vehicle.url);
+
+					return {
+						...vehicle,
+						details: details.result.properties
+					};
+				})
+			);
+
+			setVehicles(vehiclesWithDetails);
+
+		}catch(error){
+			console.error('Error fetching data: ', error);
+			throw error;
+		}
+	}
 
 	async function fetchPeopleDetails(url) {
 		const response = await fetch(url);
@@ -47,8 +74,7 @@ export const Home = () => {
 			);
 
 			setPeoples(peoplesWithDetails)
-
-			
+		
 		}catch(error){
 			console.error('Error fetching data: ', error);
 			throw error;
@@ -90,7 +116,8 @@ export const Home = () => {
 	}
 	useEffect(() => {
 		fetchDataPlanets();
-		fetchPeoples()
+		fetchPeoples();
+		fetchVehicles();
 	}, []);
 
 	return (
@@ -146,14 +173,14 @@ export const Home = () => {
 			<div className="text-start mt-5 container ">
 				<h1>Star Wars Vehicles</h1>
 				<div className="d-flex flex-row overflow-auto py-3">
-					{planets.map(planet => (
+					{planets.map(vehicle => (
 
-						<div key={planet.uid} className=" my-3 me-3">
+						<div key={vehicle.uid} className=" my-3 me-3">
 							<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
-								<img src="https://i.pravatar.cc/300" className="card-img-top" alt={planet.name}></img>
+								<img src="https://i.pravatar.cc/300" className="card-img-top" alt={vehicle.name}></img>
 								<div className="card-body h-100 d-flex flex-column">
 									<div className="mt-auto">
-										<h5 className="card-title">{planet.name}</h5>
+										<h5 className="card-title">{vehicle.name}</h5>
 										<h6> Population: {planet.details.population} </h6>
 										<h6> Terrain: {planet.details.terrain} </h6>
 										<h6> Climate: {planet.details.climate} </h6>
