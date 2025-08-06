@@ -7,10 +7,28 @@ export const Home = () => {
 	const { store, dispatch } = useGlobalReducer()
 
 	const [planets, setPlanets] = useState([])
-	// const [planetsDetails, setPlanetsDetails] = useState([])
+	const [peoples, setPeoples] = useState([])
 
 
 	const apiUrlPlanet = 'https://www.swapi.tech/api/planets'
+	const apiUrlPeople = 'https://www.swapi.tech/api/people'
+
+	async function fetchPeoples() {
+		try {
+			const response = await fetch(apiUrlPeople);
+
+			if(!response.ok){
+				throw new Error(`HTTP Error! status: ${response.status}`)
+			}
+			const data = await response.json()
+			setPeoples(data.results)
+			console.log(data.results)
+			return data.results
+		}catch(error){
+			console.error('Error fetching data: ', error);
+			throw error;
+		}
+	}
 
 
 	async function fetchPlanetDetails(url) {
@@ -48,6 +66,7 @@ export const Home = () => {
 	}
 	useEffect(() => {
 		fetchDataPlanets();
+		fetchPeoples()
 	}, []);
 
 	return (
@@ -55,11 +74,13 @@ export const Home = () => {
 			<div className="text-start mt-5 container">
 				<h1>People</h1>
 				<div className="d-flex flex-row overflow-auto py-3">
-					<div className=" my-3 me-3">
+					{peoples.map(people =>(
+
+					<div key={people.uid} className=" my-3 me-3">
 						<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
 							<img src="https://i.pravatar.cc" className="card-img-top" alt="..."></img>
 							<div className="card-body">
-								<h5 className="card-title">Card title</h5>
+								<h5 className="card-title">{people.name}</h5>
 								<p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 								<Link to="" >
 									<button type="button" className="btn btn-primary">Learn more</button>
@@ -67,6 +88,8 @@ export const Home = () => {
 							</div>
 						</div>
 					</div>
+					))}
+				
 				</div>
 			</div>
 			
