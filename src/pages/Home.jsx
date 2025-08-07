@@ -1,6 +1,9 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { CardsVehicle } from "./CardsVehicle.jsx";
+import { CardsPlanet } from "./CardsPlanet.jsx";
+import { CardsPeople } from "./CardsPeople.jsx";
 
 export const Home = () => {
 
@@ -139,87 +142,15 @@ export const Home = () => {
 
 	return (
 		<div>
-			<div className="text-start mt-5 container">
-				<h1>Star Wars People</h1>
-				<div className="d-flex flex-row overflow-auto py-3">
-					{peoples.map(people => (
-
-						<div key={people.uid} className=" my-3 me-3">
-							<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
-								<img src="https://i.pravatar.cc" className="card-img-top" alt="..."></img>
-								<div className="card-body">
-									<h5 className="card-title">{people.name}</h5>
-									<h6> Gender: {people.details.gender}</h6>
-									<h6> Hair color: {people.details.hair_color} </h6>
-									<h6> Eye color {people.details.eye_color} </h6>
-									<Link to="" >
-										<button type="button" className="btn btn-primary">Learn more</button>
-									</Link>
-								</div>
-							</div>
-						</div>
-					))}
-
-				</div>
-			</div>
-
-			<div className="text-start mt-5 container ">
-				<h1>Star Wars Planet</h1>
-				<div className="d-flex flex-row overflow-auto py-3">
-					{planets.map(planet => (
-
-						<div key={planet.uid} className=" my-3 me-3">
-							<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
-								<img src="https://i.pravatar.cc/300" className="card-img-top" alt={planet.name}></img>
-								<div className="card-body h-100 d-flex flex-column">
-									<div className="mt-auto">
-										<h5 className="card-title">{planet.name}</h5>
-										<h6> Population: {planet.details.population} </h6>
-										<h6> Terrain: {planet.details.terrain} </h6>
-										<h6> Climate: {planet.details.climate} </h6>
-										<div className="d-flex justify-content-between">
-											<Link to="" >
-												<button type="button" className="btn btn-primary">Learn more</button>
-											</Link>
-												<button onClick={() => addToFavorites(planet, 'planet')}
-													className="btn btn-outline-warning">
-														{ favorites.some(fav => fav.uid === planet.uid && fav.type === 'planet') ? (
-															<i className="fas fa-star text-warning"></i>) : (
-															<i className="far fa-star"></i>)
-														}
-												</button>											
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-			<div className="text-start mt-5 container ">
-				<h1>Star Wars Vehicles</h1>
-				<div className="d-flex flex-row overflow-auto py-3">
-					{vehicles.map(vehicle => (
-
-						<div key={vehicle.uid} className=" my-3 me-3">
-							<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
-								<img src="https://i.pravatar.cc/300" className="card-img-top" alt={vehicle.name}></img>
-								<div className="card-body h-100 d-flex flex-column">
-									<div className="mt-auto">
-										<h5 className="card-title">{vehicle.name}</h5>
-										<h6> Cargo capacity: {vehicle.details.cargo_capacity} </h6>
-										<h6> Passengers: {vehicle.details.passengers} </h6>
-										<h6> Model: {vehicle.details.model} </h6>
-										<Link to="" >
-											<button type="button" className="btn btn-primary">Learn more</button>
-										</Link>
-									</div>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
+			<CardsPeople
+				peoples={peoples}
+			/>
+			<CardsPlanet 
+				planets={planets}
+				favorites={favorites}
+				addToFavorites={addToFavorites}
+			/>
+			<CardsVehicle vehicles={vehicles}/>
 		</div>
 
 

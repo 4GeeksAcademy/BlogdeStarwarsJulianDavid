@@ -1,6 +1,7 @@
 export const initialStore=()=>{
   return{
     message: null,
+    favorite: [],
     todos: [
       {
         id: 1,
@@ -18,6 +19,14 @@ export const initialStore=()=>{
 
 export default function storeReducer(store, action = {}) {
   switch(action.type){
+
+    case 'addFavorite':
+      const {newFavorite} =action.payload
+    return {
+      ...store,
+      favorite: newFavorite
+    }
+
     case 'add_task':
 
       const { id,  color } = action.payload
