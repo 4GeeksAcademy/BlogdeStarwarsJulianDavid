@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Home } from "../pages/Home";
 
 export const Navbar = () => {
 
@@ -11,11 +12,14 @@ export const Navbar = () => {
 					
 				</Link>
 				<div className="ml-auto">
-					<Link to="">
 						<button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 							Favorite
 						</button>
-					</Link>
+						{/* <ul className="dropdown-menu">
+						{favorites.map(item => <li key={item.uid}> 
+								<p className="dropdown-item">{item.name}</p>	
+							</li>)}
+						</ul> */}
 				</div>
 			</div>
 		</nav>
