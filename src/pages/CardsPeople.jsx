@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
 
-export const CardsPeople = ({peoples=[]})=>{
+export const CardsPeople = ({
+	peoples=[],
+	favorites=[],
+	addToFavorites=[]
+})=>{
 
     return(
         <div className="text-start mt-5 container">
@@ -16,9 +20,21 @@ export const CardsPeople = ({peoples=[]})=>{
 									<h6> Gender: {people.details.gender}</h6>
 									<h6> Hair color: {people.details.hair_color} </h6>
 									<h6> Eye color {people.details.eye_color} </h6>
-									<Link to="" >
-										<button type="button" className="btn btn-primary">Learn more</button>
-									</Link>
+
+									<div className="d-flex justify-content-between">
+										<Link to="" >
+											<button type="button" className="btn btn-primary">
+												Learn more
+											</button>
+										</Link>
+										<button onClick={() => addToFavorites(people, 'people')}
+												className="btn btn-outline-warning">
+													{ favorites.some(fav => fav.uid === people.uid && fav.type === 'people') ? (
+														<i className="fas fa-star text-warning"></i>): (
+														<i className="far fa-star"></i>)
+													}
+										</button>
+									</div>	
 								</div>
 							</div>
 						</div>

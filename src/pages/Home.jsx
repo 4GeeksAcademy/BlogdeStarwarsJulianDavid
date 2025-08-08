@@ -155,9 +155,9 @@ export const Home = () => {
 				addToFavorites={addToFavorites}
 			/>
 			<CardsVehicle 
-			vehicles={vehicles}
-			favorites={store.favorites}
-			addToFavorites={addToFavorites}
+				vehicles={vehicles}
+				favorites={store.favorites}
+				addToFavorites={addToFavorites}
 			/>
 		</div>
 
