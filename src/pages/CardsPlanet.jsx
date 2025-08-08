@@ -10,7 +10,7 @@ export const CardsPlanet = ({
 	  
 
     return(
-        	<div className="text-start mt-5 container ">
+        	<div className="container card text-white bg-dark text-start my-5">
 				<h1>Star Wars Planet</h1>
 				<div className="d-flex flex-row overflow-auto py-3">
 					{planets.map(planet => (
@@ -26,7 +26,7 @@ export const CardsPlanet = ({
 										<h6> Climate: {planet.details.climate} </h6>
 										<div className="d-flex justify-content-between">
 											<Link to="" >
-												<button type="button" className="btn btn-primary">Learn more</button>
+												<button type="button" className="btn btn-dark">Learn more</button>
 											</Link>
 												<button onClick={() => addToFavorites(planet, 'planet')}
 													className="btn btn-outline-warning">
