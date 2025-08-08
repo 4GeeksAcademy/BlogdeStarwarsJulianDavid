@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
-export const Navbar = () => {
+export const Navbar = ({removeFromFavorites}) => {
 	const { store } = useGlobalReducer();
-	 if (!store) return null;
-	 console.log("Store en Navbar:", store);
 
 	return (
 		<nav className="navbar navbar-light bg-light">
@@ -14,14 +12,14 @@ export const Navbar = () => {
 						<img src="/src/assets/img/starWars.png" alt="" width="50" height="44"></img>
 					
 				</Link>
-				<div className="ml-auto">
-						<button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				<div className="dropdown">
+						<button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 							Favorites ({store.favorites.length})
 						</button>
-						<ul className="dropdown-menu">
+						<ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
 						{store.favorites.map(item => (
-							<li key={`${item.type}-${item.uid}`} className="dropdown-item"> 
-								{item.name}
+							<li key={`${item.type}-${item.uid}`}> <button className="dropdown-item" type="button"  > 
+								{item.name} <i onClick={() => removeFromFavorites(item.uid, item.type)} className="fa-regular fa-trash-can ms-2"></i> </button>
 							</li>
 							))}
 						</ul>

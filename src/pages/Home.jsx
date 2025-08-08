@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { CardsVehicle } from "./CardsVehicle.jsx";
 import { CardsPlanet } from "./CardsPlanet.jsx";
 import { CardsPeople } from "./CardsPeople.jsx";
+import { Navbar } from "../components/Navbar.jsx";
 
 export const Home = () => {
 
@@ -142,6 +143,7 @@ export const Home = () => {
 
 	return (
 		<div>
+			<Navbar removeFromFavorites={removeFromFavorites} />
 			<CardsPeople
 				peoples={peoples}
 			/>
