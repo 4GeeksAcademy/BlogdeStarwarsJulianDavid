@@ -7,12 +7,12 @@ export const CardsPeople = ({
 })=>{
 
     return(
-        <div className="container card text-white bg-dark text-start my-5">
+        <div className="container card text-white bg-dark text-start my-5 opacity-75">
 				<h1>Star Wars People</h1>
 				<div className="d-flex flex-row overflow-auto py-3">
 					{peoples.map(people => (
 
-						<div key={people.uid} className=" my-3 me-3">
+						<div key={people.uid} className=" my-3 me-3 ">
 							<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
 								<img src="https://i.pravatar.cc" className="card-img-top" alt="..."></img>
 								<div className="card-body">
@@ -30,7 +30,7 @@ export const CardsPeople = ({
 										<button onClick={() => addToFavorites(people, 'people')}
 												className="btn btn-outline-warning">
 													{ favorites.some(fav => fav.uid === people.uid && fav.type === 'people') ? (
-														<i className="fas fa-star text-warning"></i>): (
+														<i className="fas fa-star text-dark"></i>): (
 														<i className="far fa-star"></i>)
 													}
 										</button>

@@ -5,13 +5,14 @@ export const Navbar = ({ removeFromFavorites }) => {
 	const { store } = useGlobalReducer();
 
 	return (
-		<nav className="navbar navbar-dark bg-dark">
+		<nav className="navbar navbar-dark bg-dark sticky-top opacity-75">
 			<div className="container">
 				<Link to="/"
 					className="navbar-brand" href="#">
-					<img src="/src/assets/img/starWars.png" alt="" width="50" height="44"></img>
+					<img src="/src/assets/img/starWars.png" alt="" width="90" height="64"></img>
 
 				</Link>
+				<h1 className="text-warning">IN A GALAXY <small className="text-light">FAR AWAY</small></h1>
 				<div className="btn-group dropstart">
 					<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
 						Favorites ({store.favorites.length})

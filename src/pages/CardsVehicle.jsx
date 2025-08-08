@@ -10,7 +10,7 @@ export const CardsVehicle = ({
 
     return(
 
-            <div className="container card text-white bg-dark text-start my-5">
+            <div className="container card text-white bg-dark text-start my-5 opacity-75">
                     <h1>Star Wars Vehicles</h1>
                 <div className="d-flex flex-row overflow-auto py-3">
                                     {vehicles.map(vehicle => (
@@ -33,7 +33,7 @@ export const CardsVehicle = ({
                                         <button onClick={() => addToFavorites(vehicle, 'vehicle')}
 													className="btn btn-outline-warning">
 														{ favorites.some(fav => fav.uid === vehicle.uid && fav.type === 'vehicle') ? (
-															<i className="fas fa-star text-warning"></i>) : (
+															<i className="fas fa-star text-dark"></i>) : (
 															<i className="far fa-star"></i>)
 														}
 										</button>
