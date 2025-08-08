@@ -9,7 +9,6 @@ export const Home = () => {
 
 	const { store, dispatch } = useGlobalReducer()
 
-	const [favorites, setFavorites] = useState([])
 	const [planets, setPlanets] = useState([])
 	const [peoples, setPeoples] = useState([])
 	const [vehicles, setVehicles] = useState([])
@@ -21,18 +20,19 @@ export const Home = () => {
 
 
 	const addToFavorites = (item, itemType) => {
-		const isAlreadyFavorite = favorites.some(fav => fav.uid === item.uid && fav.type === itemType);
+		const isAlreadyFavorite = store.favorites.some(fav => fav.uid === item.uid && fav.type === itemType);
 
 		if (!isAlreadyFavorite) {
-			setFavorites(prev => [...prev, { ...item, type: itemType }]);
-			console.log(`${item.name} (${itemType}) añadido!`);
+			const newFavorites = [...store.favorites, { ...item, type: itemType }];
+			dispatch({ type: 'update_favorites', payload: { newFavorites } });
 		}
 	};
 
-	const removeFromFavotites = (uid, itempType) => {
-		setFavorites(prev =>
-			prev.filter(fav => !(fav.uid === uid && fav.type === itempType))
+	const removeFromFavorites = (uid, itemType) => {
+		const newFavorites = store.favorites.filter(fav =>
+			!(fav.uid === uid && fav.type === itemType)
 		);
+		dispatch({ type: 'update_favorites', payload: { newFavorites } });
 	};
 
 	async function fetchVehicleDetails(url) {
@@ -145,12 +145,12 @@ export const Home = () => {
 			<CardsPeople
 				peoples={peoples}
 			/>
-			<CardsPlanet 
+			<CardsPlanet
 				planets={planets}
-				favorites={favorites}
+				favorites={store.favorites}
 				addToFavorites={addToFavorites}
 			/>
-			<CardsVehicle vehicles={vehicles}/>
+			<CardsVehicle vehicles={vehicles} />
 		</div>
 
 

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
-import { Home } from "../pages/Home";
+import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 
 export const Navbar = () => {
+	const { store } = useGlobalReducer();
+	 if (!store) return null;
+	 console.log("Store en Navbar:", store);
 
 	return (
 		<nav className="navbar navbar-light bg-light">
@@ -13,13 +16,15 @@ export const Navbar = () => {
 				</Link>
 				<div className="ml-auto">
 						<button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-							Favorite
+							Favorites ({store.favorites.length})
 						</button>
-						{/* <ul className="dropdown-menu">
-						{favorites.map(item => <li key={item.uid}> 
-								<p className="dropdown-item">{item.name}</p>	
-							</li>)}
-						</ul> */}
+						<ul className="dropdown-menu">
+						{store.favorites.map(item => (
+							<li key={`${item.type}-${item.uid}`} className="dropdown-item"> 
+								{item.name}
+							</li>
+							))}
+						</ul>
 				</div>
 			</div>
 		</nav>

@@ -7,6 +7,10 @@ export const CardsPlanet = ({
 	favorites = [],
 	addToFavorites
  }) =>{
+	  const isFavorite = (uid, type) => {
+    if (!Array.isArray(favorites)) return false;
+    return favorites.some(fav => fav?.uid === uid && fav?.type === type);
+  };
 
     return(
         	<div className="text-start mt-5 container ">
