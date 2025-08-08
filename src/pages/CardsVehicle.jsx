@@ -2,7 +2,11 @@ import { Link } from "react-router-dom";
 
 
 
-export const CardsVehicle = ({ vehicles = [] }) =>{
+export const CardsVehicle = ({ 
+        vehicles = [],
+        favorites = [],
+        addToFavorites
+    }) =>{
 
     return(
 
@@ -20,11 +24,20 @@ export const CardsVehicle = ({ vehicles = [] }) =>{
                                     <h6> Cargo capacity: {vehicle.details.cargo_capacity} </h6>
                                     <h6> Passengers: {vehicle.details.passengers} </h6>
                                     <h6> Model: {vehicle.details.model} </h6>
+                                    <div className="d-flex justify-content-between">
                                         <Link to="" >
                                             <button type="button" className="btn btn-primary">
                                                 Learn more
                                             </button>
                                         </Link>
+                                        <button onClick={() => addToFavorites(vehicle, 'vehicle')}
+													className="btn btn-outline-warning">
+														{ favorites.some(fav => fav.uid === vehicle.uid && fav.type === 'vehicle') ? (
+															<i className="fas fa-star text-warning"></i>) : (
+															<i className="far fa-star"></i>)
+														}
+										</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

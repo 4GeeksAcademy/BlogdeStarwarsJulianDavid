@@ -19,7 +19,7 @@ export const Navbar = ({removeFromFavorites}) => {
 						<ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
 						{store.favorites.map(item => (
 							<li key={`${item.type}-${item.uid}`}> <button className="dropdown-item" type="button"  > 
-								{item.name} <i onClick={() => removeFromFavorites(item.uid, item.type)} className="fa-regular fa-trash-can ms-2"></i> </button>
+								{item.name} <i onClick={(e) => {e.stopPropagation(), removeFromFavorites(item.uid, item.type)}} className="fa-regular fa-trash-can ms-2"></i> </button>
 							</li>
 							))}
 						</ul>

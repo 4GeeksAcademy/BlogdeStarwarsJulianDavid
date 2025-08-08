@@ -146,13 +146,19 @@ export const Home = () => {
 			<Navbar removeFromFavorites={removeFromFavorites} />
 			<CardsPeople
 				peoples={peoples}
+				favorites={store.favorites}
+				addToFavorites={addToFavorites}
 			/>
 			<CardsPlanet
 				planets={planets}
 				favorites={store.favorites}
 				addToFavorites={addToFavorites}
 			/>
-			<CardsVehicle vehicles={vehicles} />
+			<CardsVehicle 
+			vehicles={vehicles}
+			favorites={store.favorites}
+			addToFavorites={addToFavorites}
+			/>
 		</div>
 
 
