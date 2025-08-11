@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
+import { Navbar } from "../components/Navbar";
 
-export const CardsPeople = ({
+export const Load = ({
 	peoples=[],
 	favorites=[],
 	addToFavorites=[]
 })=>{
 
     return(
+		
+        
         <div className="container card text-white bg-dark text-start my-5 opacity-75">
 				<h1>Star Wars People</h1>
 				<div className="d-flex flex-row overflow-auto py-3">
@@ -44,3 +47,41 @@ export const CardsPeople = ({
 			</div>
     )
 }
+
+
+// export const Load = () => {
+
+//     const [peoples, setPeoples] = useState([])
+    
+//     const apiUrlPeople = 'https://www.swapi.tech/api/people'
+    
+//     async function fetchPeople() {
+//         try{
+//             const response = await fetch(apiUrlPeople)
+
+//             if (!response.ok){
+//                 throw new Error (`HTTP Error! status: ${response.status}`)
+//             }
+//             const data = await response.json();
+
+//             setPeoples(data)
+//             console.log(data)
+
+//         }catch(error){
+//             console.error('Error fetching data: ', error)
+//             throw error;
+//         }
+//     }
+    
+//     useEffect(()=> {
+//         fetchPeople()
+//     }, [])
+    
+//     return (
+
+
+
+//     <h1>Hello</h1>
+//     )
+// }
+

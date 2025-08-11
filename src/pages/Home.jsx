@@ -29,12 +29,7 @@ export const Home = () => {
 		}
 	};
 
-	const removeFromFavorites = (uid, itemType) => {
-		const newFavorites = store.favorites.filter(fav =>
-			!(fav.uid === uid && fav.type === itemType)
-		);
-		dispatch({ type: 'update_favorites', payload: { newFavorites } });
-	};
+
 
 	async function fetchVehicleDetails(url) {
 		const response = await fetch(url);
@@ -143,7 +138,7 @@ export const Home = () => {
 
 	return (
 		<div>
-			<Navbar removeFromFavorites={removeFromFavorites} />
+			{/* <Navbar removeFromFavorites={removeFromFavorites} /> */}
 			<CardsPeople
 				peoples={peoples}
 				favorites={store.favorites}

@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
+import {NavbarWrapper} from "./NavbarWrapper.jsx"
 
 export const Navbar = ({ removeFromFavorites }) => {
 	const { store } = useGlobalReducer();
+
+	
 
 	return (
 		<nav className="navbar navbar-dark bg-dark sticky-top opacity-75">
@@ -35,3 +38,5 @@ export const Navbar = ({ removeFromFavorites }) => {
 		</nav>
 	);
 };
+
+export default Navbar;
