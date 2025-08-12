@@ -1,87 +1,48 @@
-import { Link } from "react-router-dom";
-import { Navbar } from "../components/Navbar";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-export const Load = ({
-	peoples=[],
-	favorites=[],
-	addToFavorites=[]
-})=>{
+export const Load = () => {
 
-    return(
+	
+	const { uid } = useParams()
+	const [peoples, setPeoples] = useState([])
+	const urlDetailsPeople = `https://www.swapi.tech/api/people/${uid}`
+
+	async function Load() {
 		
-        
-        <div className="container card text-white bg-dark text-start my-5 opacity-75">
-				<h1>Star Wars People</h1>
-				<div className="d-flex flex-row overflow-auto py-3">
-					{peoples.map(people => (
+		try {
+			const response = await fetch(urlDetailsPeople);
+			if (!response.ok){
+				throw new Error (`HTTP Error! Status: {response.status}`)
+			}
+			const data = await response.json()
+			setPeoples(data.result.properties)
+		} catch (error) {
+			console.error(error.message);
+			throw error;
+		}
+	}
+	useEffect(() => {
+		Load()
+	}, [])
 
-						<div key={people.uid} className=" my-3 me-3 ">
-							<div className="card h-100 d-flex flex-column" style={{ width: '18rem' }}>
-								<img src="https://i.pravatar.cc" className="card-img-top" alt="..."></img>
-								<div className="card-body">
-									<h5 className="card-title">{people.name}</h5>
-									<h6> Gender: {people.details.gender}</h6>
-									<h6> Hair color: {people.details.hair_color} </h6>
-									<h6> Eye color {people.details.eye_color} </h6>
-
-									<div className="d-flex justify-content-between">
-										<Link to="/load" >
-											<button type="button" className="btn btn-dark">
-												Learn more
-											</button>
-										</Link>
-										<button onClick={() => addToFavorites(people, 'people')}
-												className="btn btn-outline-warning">
-													{ favorites.some(fav => fav.uid === people.uid && fav.type === 'people') ? (
-														<i className="fas fa-star text-dark"></i>): (
-														<i className="far fa-star"></i>)
-													}
-										</button>
-									</div>	
-								</div>
-							</div>
-						</div>
-					))}
-
+	return (
+		<div className="card mb-3" style={{width: '540px'}}>
+			<div className="row g-0">
+				<div className="col-md-4">
+					<img src="..." className="img-fluid rounded-start" alt="..."></img>
+				</div>
+				<div className="col-md-8">
+					<div className="card-body">
+						<h5 className="card-title">Card title {peoples.name}</h5>
+						<p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						<p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
+					</div>
 				</div>
 			</div>
-    )
+		</div>
+	)
 }
 
-
-// export const Load = () => {
-
-//     const [peoples, setPeoples] = useState([])
-    
-//     const apiUrlPeople = 'https://www.swapi.tech/api/people'
-    
-//     async function fetchPeople() {
-//         try{
-//             const response = await fetch(apiUrlPeople)
-
-//             if (!response.ok){
-//                 throw new Error (`HTTP Error! status: ${response.status}`)
-//             }
-//             const data = await response.json();
-
-//             setPeoples(data)
-//             console.log(data)
-
-//         }catch(error){
-//             console.error('Error fetching data: ', error)
-//             throw error;
-//         }
-//     }
-    
-//     useEffect(()=> {
-//         fetchPeople()
-//     }, [])
-    
-//     return (
-
-
-
-//     <h1>Hello</h1>
-//     )
-// }
 
