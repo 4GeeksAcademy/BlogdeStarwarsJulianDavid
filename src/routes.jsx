@@ -11,7 +11,7 @@ import { Single } from "./pages/Single";
 import { Demo } from "./pages/Demo";
 import { LoadPeople } from "./pages/LoadPeople";
 import { LoadVehicle } from "./pages/LoadVehicle";
-import { Navbar } from "./components/Navbar";
+import { LoadPlanet } from "./pages/LoadPlanet";
 
 
 export const router = createBrowserRouter(
@@ -31,6 +31,7 @@ export const router = createBrowserRouter(
         <Route path="/demo" element={<Demo />} />
         <Route path="/people/:uid" element= {<LoadPeople />} />
         <Route path="/vehicle/:uid" element= {<LoadVehicle />} />
+        <Route path="/planet/:uid" element={<LoadPlanet /> } />
       </Route>
     )
 );

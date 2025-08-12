@@ -25,7 +25,7 @@ export const CardsPlanet = ({
 										<h6> Terrain: {planet.details.terrain} </h6>
 										<h6> Climate: {planet.details.climate} </h6>
 										<div className="d-flex justify-content-between">
-											<Link to="" >
+											<Link to={`/planet/${planet.uid}`} >
 												<button type="button" className="btn btn-dark">Learn more</button>
 											</Link>
 												<button onClick={() => addToFavorites(planet, 'planet')}
