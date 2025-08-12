@@ -25,7 +25,7 @@ export const CardsVehicle = ({
                                     <h6> Passengers: {vehicle.details.passengers} </h6>
                                     <h6> Model: {vehicle.details.model} </h6>
                                     <div className="d-flex justify-content-between">
-                                        <Link to="" >
+                                        <Link to={`/vehicle/${vehicle.uid}`} >
                                             <button type="button" className="btn btn-dark">
                                                 Learn more
                                             </button>

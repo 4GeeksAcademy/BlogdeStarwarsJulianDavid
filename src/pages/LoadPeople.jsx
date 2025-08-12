@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-export const Load = () => {
+export const LoadPeople = () => {
 
 
 	const { uid } = useParams()
