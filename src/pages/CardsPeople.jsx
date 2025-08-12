@@ -22,7 +22,7 @@ export const CardsPeople = ({
 									<h6> Eye color {people.details.eye_color} </h6>
 
 									<div className="d-flex justify-content-between">
-										<Link to="/load" >
+										<Link to={`/people/${people.uid}`} >
 											<button type="button" className="btn btn-dark">
 												Learn more
 											</button>
