@@ -21,7 +21,6 @@ export const LoadVehicle = () => {
                 throw new Error(`HTTP Error! status: ${response.status}`)
             }
             const data = await response.json();
-            console.log('Datos recibidos de la API:', data);
             
             setVehicles({
                 uid: uid,
@@ -29,7 +28,6 @@ export const LoadVehicle = () => {
                 url: data.result.properties.url,
                 details: data.result.properties
             })
-            console.log('Datos específicos de cada personaje: ', data.result.properties)
         } catch (error) {
             console.error('Error fetching data: ', error);
             throw error;

@@ -14,14 +14,11 @@ export const LoadPlanet = () => {
             
             const urlDetailsPlanet = `https://www.swapi.tech/api/planets/${uid}`;
             const response = await fetch(urlDetailsPlanet);
-            console.log('URL que se está consultando:', urlDetailsPlanet);
-            console.log('UID recibido:', uid);
 
             if (!response.ok) {
                 throw new Error(`HTTP Error! status: ${response.status}`)
             }
             const data = await response.json();
-            console.log('Datos recibidos de la API:', data);
             
             setPlanets({
                 uid: uid,
@@ -29,7 +26,6 @@ export const LoadPlanet = () => {
                 url: data.result.properties.url,
                 details: data.result.properties
             })
-            console.log('Datos específicos de cada planeta: ', data.result.properties)
         } catch (error) {
             console.error('Error fetching data: ', error);
             throw error;
